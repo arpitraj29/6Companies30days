@@ -1,0 +1,28 @@
+question link:- https://practice.geeksforgeeks.org/problems/ugly-numbers2254/1/
+
+code:-
+
+  class Solution{
+public:	
+	// #define ull unsigned long long
+	/* Function to get the nth ugly number*/
+	ull getNthUglyNo(int n) {
+	    if(n==1 || n==2 || n==3 || n==4 || n==5){
+	        return n;
+	    }
+	    set<ull> s;
+	    n--;
+	    s.insert(1);
+	    while(n){
+	        auto it=s.begin();
+	        ull x= *it;
+	        s.insert(x*2);
+	        s.insert(x*3);
+	        s.insert(x*5);
+	        s.erase(it);
+	        
+	        n--;
+	    }
+	    return *s.begin();
+	}
+};
