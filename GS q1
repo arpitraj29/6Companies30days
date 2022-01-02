@@ -1,0 +1,53 @@
+Q link - https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
+
+
+Code:-
+
+class Solution{
+  public:
+    bool check(string s,string l){
+        if(s.size()!=l.size()){
+            return 0;
+        }
+        unordered_map<char,int>mp1,mp2;
+        for(int i=0;i<s.size();i++){
+            mp1[s[i]]++;
+        }
+        for(int i=0;i<l.size();i++){
+            mp2[l[i]]++;
+        }
+        for(auto x:mp1){
+            if(mp2[x.first]!=x.second){
+                return 0;
+            }
+        }
+        return 1;
+    }
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+      int n=string_list.size();
+       vector<vector<string> > v;
+       int vis[n]={0};
+       int indx=0;
+       for(int i=0;i<n;i++){
+           vector<string> vin;
+           int f=1;
+           if(vis[i]==0){
+               f=0;
+               vin.push_back(string_list[i]);
+               for(int j=i+1;j<n;j++){
+                   if(vis[j]==0 && check( string_list[i], string_list[j])){
+                       vin.push_back(string_list[j]);
+                       vis[j]=1;
+                   }
+               }
+           }
+          if(f==0){
+              v.push_back(vin);
+          } 
+       }
+        
+       
+        
+        return v;
+    }
+};
