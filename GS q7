@@ -1,0 +1,10 @@
+question link:- https://www.geeksforgeeks.org/distributing-m-items-circle-size-n-starting-k-th-position/
+
+int ans(int n,int m,int k){
+    if(m+k-1<n){
+      return m+k-1;}
+    m=m-(n-k+1);
+    return (m % n == 0) ? n : (m % n);
+  }  
+  
+    
