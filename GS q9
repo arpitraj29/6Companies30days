@@ -1,0 +1,43 @@
+question link : - https://practice.geeksforgeeks.org/problems/number-following-a-pattern3126/1#
+
+code:-
+
+  class Solution{   
+public:
+    string printMinNumberForPattern(string S){
+        string ans="";
+     
+      vector<int>v;
+      int ma=1,poi=0;
+      if(S[0]=='I'){
+          v.push_back(1);
+          v.push_back(2);
+          ma=3;
+          poi=1;
+      }
+      else{
+          v.push_back(2);
+          v.push_back(1);
+          ma=3;
+          poi=0;
+      }
+      for(int i=1;i<S.size();i++){
+          if(S[i]=='I'){
+              v.push_back(ma);
+              ma++;
+              poi=i+1;
+          }
+          else{
+              v.push_back(v[i]);
+              for(int j=poi;j<=i;j++){
+                  v[j]++;
+              }
+              ma++;
+          }
+      }
+      for(int i=0;i<v.size();i++){
+          ans.push_back(v[i]+'0');
+      }
+      return ans; 
+    }
+};
