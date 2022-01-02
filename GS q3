@@ -1,0 +1,22 @@
+question link:- https://practice.geeksforgeeks.org/problems/count-the-subarrays-having-product-less-than-k1708/1/
+
+code:-
+
+class Solution{
+  public:
+    int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
+        long long s=0,e=0,c=0,p=1;
+        while(e<n){
+            p*=a[e];
+            while(s<n && p>=k){
+                p/=a[s];
+                s++;
+            }
+            if(p<k){
+                c+=e-s+1;
+                e++;
+            }
+        }
+        return c;
+    }
+};
