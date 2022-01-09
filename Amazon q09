@@ -1,0 +1,62 @@
+question link:- https://practice.geeksforgeeks.org/problems/is-sudoku-valid4820/1/
+
+code:- 
+    class Solution{
+public:
+   bool isrange(vector<vector<int>> mat){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                if(mat[i][j]<0 || mat[i][j]>9){
+                    return false;
+                }
+                
+            }
+        }
+        return true;
+    }
+    int isValid(vector<vector<int>> mat){
+        if(!isrange(mat)){
+            return 0;
+        }
+        int arr[10];
+        memset(arr,0,sizeof(arr));
+        for(int i=0;i<9;i++){
+            memset(arr,0,sizeof(arr));
+            for(int j=0;j<9;j++){
+                if(mat[i][j]!=0){
+                    if(arr[mat[i][j]]==1){
+                        return 0;
+                    }
+                    arr[mat[i][j]]=1;
+                }
+            }
+        }
+        for(int j=0;j<9;j++){
+            memset(arr,0,sizeof(arr));
+            for(int i=0;i<9;i++){
+                if(mat[i][j]!=0){
+                    if(arr[mat[i][j]]==1){
+                        return 0;
+                    }
+                    arr[mat[i][j]]=1;
+                }
+            }
+        }
+        for(int i=0;i<7;i+=3){
+            for(int j=0;j<7;j+=3){
+                memset(arr,0,sizeof(arr));
+                for(int k=0;k<3;k++){
+                    for(int l=0;l<3;l++){
+                        if(mat[i+k][j+l]!=0){
+                            if(arr[mat[i+k][j+l]]==1){
+                                return 0;
+                            }
+                            arr[mat[i+k][j+l]]=1;
+                        }
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+};
