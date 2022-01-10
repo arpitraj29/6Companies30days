@@ -1,0 +1,66 @@
+question link:- https://practice.geeksforgeeks.org/problems/burning-tree/1/#
+
+code:- 
+    class Solution {
+  public:
+    Node* find(Node* root,int t){
+        if(!root){
+            return NULL;
+        }
+        if(root->data==t){
+            return root;
+        }
+        Node* l = find(root->left,t);
+        Node* r = find(root->right,t);
+        if(l){
+            return l;
+        }
+        
+        else if(r){
+            return r;
+        }
+        return NULL;
+    }
+    int minTime(Node* root, int target) 
+    {
+        Node* curr=find(root,target);
+        unordered_map<Node*,Node*>mp;
+        queue<Node*>q;
+        q.push(root);
+        while(!q.empty()){
+            Node* m=q.front();
+            q.pop();
+            if( m->left ){
+                mp[m->left]=m;
+                q.push(m->left);
+            }
+            if(m->right){
+                mp[m->right]=m;
+                q.push(m->right);
+            }
+        }
+        queue<pair<Node*,int>>q1;
+        unordered_map<Node*,int>vis;
+        q1.push({curr,0});
+        vis[curr]=1;
+        int ans=0;
+        while(!q1.empty()){
+            ans=q1.front().second;
+            Node* tr=q1.front().first;
+            vis[tr]=1;
+            q1.pop();
+            if(mp.find(tr)!=mp.end() && !vis[mp[tr]]){
+                q1.push({mp[tr],ans+1});
+            }
+            
+            if(tr->left && !vis[tr->left]){
+                q1.push({tr->left,ans+1});
+            }
+            
+            if(tr->right && !vis[tr->right]){
+                q1.push({tr->right,ans+1});
+            }
+        }
+        return ans;    
+    }
+};
