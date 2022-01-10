@@ -1,0 +1,21 @@
+question link :- https://practice.geeksforgeeks.org/problems/column-name-from-a-given-column-number4244/1/#
+
+code:-
+      class Solution{
+    public:
+    string colName (long long int n)
+    {   string s="";
+        
+        
+        while(n!=0){
+            n--;
+            int r=n%26;
+            char ch= 'A'+r;
+            s = ch +s;
+            n=n/26;
+            
+        }
+        
+        return s;
+    }
+};
