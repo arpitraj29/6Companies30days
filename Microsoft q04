@@ -1,0 +1,42 @@
+question link:- https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1/#
+
+code:- 
+    vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+    {
+        vector<int>ans;
+        int rs=0,re=r-1,cs=0,ce=c-1;
+        int i;
+        while(ans.size()!=r*c){
+        for(i=cs;i<=ce;i++){
+            ans.push_back(matrix[rs][i]);
+        }
+        
+        rs++;
+        if(rs>re || cs>ce){
+            break;
+        }
+        for(i=rs;i<=re;i++){
+            ans.push_back(matrix[i][ce]);
+        }        
+        ce--;
+        if(rs>re || cs>ce){
+            break;
+        }
+        for(i=ce;i>=cs;i--){
+            ans.push_back(matrix[re][i]);
+        }
+        re--;
+        if(rs>re || cs>ce){
+            break;
+        }
+        for(i=re;i>=rs;i--){
+            ans.push_back(matrix[i][cs]);
+        }
+        cs++;
+        if(rs>re || cs>ce){
+            break;
+        }
+        }
+        return ans;
+    }
+};
