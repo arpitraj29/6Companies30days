@@ -1,0 +1,41 @@
+question link:- https://practice.geeksforgeeks.org/problems/connect-nodes-at-same-level/1/#
+
+code:- 
+    class Solution
+{
+    public:
+    //Function to connect nodes at same level.
+    void connect(Node *root)
+    {   if(!root){
+        return ;
+    }
+       queue<Node*>q;
+       q.push(root);
+       while(!q.empty()){
+           int s=q.size();
+           Node* temp=q.front();
+           q.pop();
+           s=s-1;
+           if(temp->left){
+               q.push(temp->left);
+           }
+           if(temp->right){
+               q.push(temp->right);
+           }
+           while(s--){
+               Node* curr=q.front();
+               temp->nextRight=curr;
+               temp=temp->nextRight;
+               if(curr->left){
+                   q.push(curr->left);
+               }
+               if(curr->right){
+                   q.push(curr->right);
+               }
+               q.pop();
+           }
+       }
+       return ;
+    }    
+      
+};
