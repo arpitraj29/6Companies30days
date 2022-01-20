@@ -1,0 +1,26 @@
+question link:- https://practice.geeksforgeeks.org/problems/count-number-of-subtrees-having-given-sum/1/#
+
+code:-
+  int  solve(Node* root,int X,int &c){
+    if(!root){
+        return 0;
+    }
+    int l=solve(root->left,X,c);
+    int r=solve(root->right,X,c);
+    int sum=root->data+l+r;
+    if(sum==X){
+        c++;
+    }
+    return sum;
+}
+int countSubtreesWithSumX(Node* root, int X)
+{
+	if(!root){
+	    return 0;
+	}
+	int c=0;
+    int gv=solve(root,X,c);
+    
+    
+    return c;
+}
