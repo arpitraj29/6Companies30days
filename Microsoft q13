@@ -1,0 +1,25 @@
+question link:- https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1
+
+
+code:- 
+    class Solution
+{
+	public:
+	int vis[100001];
+	void dfs(vector<int> adj[],int k,int c,int d){
+	    vis[k]=1;
+	    for(auto x:adj[k]){
+	        if(k==c && x==d)continue;
+	        if(vis[x]==0){
+	            dfs(adj,x,c,d);
+	        }
+	    }
+	    return ;
+	}
+    //Function to find if the given edge is a bridge in graph.
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {   memset(vis,0,sizeof(vis));
+        dfs(adj,c,c,d);
+        return vis[d]==0;
+    }
+};
