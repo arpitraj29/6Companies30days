@@ -1,0 +1,26 @@
+question link:- https://practice.geeksforgeeks.org/problems/longest-arithmetic-progression1019/1/
+
+code:-
+            class Solution{   
+public:
+    int lengthOfLongestAP(int A[], int n) {
+        if(n<=2){
+            return n;
+        }
+        vector<unordered_map<int,int>>lap(n);
+        int maxi=2;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int dif=A[j]-A[i];
+                if(lap[i].find(dif)!=lap[i].end()){
+                    lap[j][dif]=lap[i][dif]+1;
+                }
+                else{
+                    lap[j][dif]=2;
+                }
+                maxi=max(maxi,lap[j][dif]);
+            }
+        }
+        return maxi;
+    }
+};
