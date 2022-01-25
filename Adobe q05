@@ -1,0 +1,35 @@
+question link:- https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1#
+
+
+code:-
+    class Solution{
+    public:
+    long long int t[1001][1001];
+    long long int mod=1e9+7;
+    long long int solve(int n,int x,int i){
+        if(n==0){
+            return 1;
+        }
+        if(i>n){
+            return 0;
+        }
+        if(t[n][i]!=-1){
+            return t[n][i]%mod;
+        }
+        int pa=pow(i,x);
+        if(pa<=n){
+            t[n][i]=solve(n-pa,x,i+1)+solve(n,x,i+1);
+            return t[n][i]%mod;
+        }
+        else{
+            t[n][i]=0;
+            return t[n][i]%mod;
+        }
+    }
+    int numOfWays(int n, int x)
+    {
+        memset(t,-1,sizeof(t));
+        return solve(n,x,1);
+        
+    }
+};
