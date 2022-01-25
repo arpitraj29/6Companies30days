@@ -1,0 +1,25 @@
+question link:- https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1/#
+
+code:-
+    class Solution
+{
+    public:
+    void solve(int n,int o,int c,string s,vector<string>&ans){
+        if(o==n && c==n){
+            ans.push_back(s);
+            return;
+        }
+        if(o<n){
+            solve(n,o+1,c,s+"(",ans);
+        }
+        if(c<o){
+            solve(n,o,c+1,s+")",ans);
+        }
+    }
+    vector<string> AllParenthesis(int n) 
+    {
+        vector<string>ans;
+        solve(n,0,0,"",ans);
+        return ans;
+    }
+};
