@@ -1,0 +1,29 @@
+question link:- https://practice.geeksforgeeks.org/problems/winner-of-an-election-where-votes-are-represented-as-candidate-names-1587115621/1/#
+
+
+code:-
+      class Solution{
+  public:
+  
+    //Function to return the name of candidate that received maximum votes.
+    vector<string> winner(string arr[],int n)
+    {
+       map<string,int>mp;
+      
+       for(int i=0;i<n;i++){
+           mp[arr[i]]++;
+       }
+       int maxn=0;
+       string maxs="";
+       for(auto x:mp){
+           if(x.second>maxn){
+               maxs=x.first;
+               maxn=x.second;
+           }
+       }
+       vector<string>ans;
+       ans.push_back(maxs);
+       ans.push_back(to_string(maxn));
+       return ans;
+    }
+};
