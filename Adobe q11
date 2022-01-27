@@ -1,0 +1,23 @@
+question link:- https://practice.geeksforgeeks.org/problems/amend-the-sentence3235/1#
+
+
+code:-
+    class Solution{
+    public:
+    string amendSentence (string s)
+    {
+        string ans;
+        for(int i=0;i<s.size();i++){
+            if(s[i]-'A'<=26){
+                if(i>0){ans+=" ";}
+                ans.push_back('a'+(s[i]-'A'));
+            }
+            else{
+                ans.push_back(s[i]);
+                
+            }
+        }
+        
+        return ans;
+    }
+};
