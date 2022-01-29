@@ -1,0 +1,45 @@
+question link:- https://practice.geeksforgeeks.org/problems/word-search/1/#
+
+code:- 
+    class Solution {
+public:
+     bool dfs(vector<vector<char>>& b,string word,int i,int j,int pos)
+    {
+        int m=b.size();
+        int n=b[0].size();
+        if(i<0 || j<0 || i>=m || j>=n)
+        return false;
+        if(pos==word.length())
+        return true;
+        if(word[pos]==b[i][j])
+        {
+            char temp=b[i][j];
+            b[i][j]='#';
+            bool a=dfs(b,word,i+1,j,pos+1); 
+            bool r=dfs(b,word,i-1,j,pos+1);
+            bool c=dfs(b,word,i,j+1,pos+1);
+            bool d=dfs(b,word,i,j-1,pos+1);
+            b[i][j]=temp;
+            return a||r||c||d;
+        }
+        else
+        return false;
+        
+    }
+    bool isWordExist(vector<vector<char>>& b, string word) {
+        int m=b.size();
+        int n=b[0].size();
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(b[i][j]==word[0])
+                {
+                    if(dfs(b,word,i,j,0))
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
