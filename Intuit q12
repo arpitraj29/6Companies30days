@@ -1,0 +1,36 @@
+question link:- https://leetcode.com/problems/course-schedule-ii/
+
+code:-
+    class Solution {
+public:
+   vector<int> findOrder(int n, vector<vector<int>>& prerequisites) {
+
+    vector<vector<int>> graph(n);
+    for(auto i : prerequisites)
+        graph[i[0]].push_back(i[1]);
+    
+    vector<bool> visited(n, false);
+    vector<bool> completed(n, false);
+    vector<int> ans;
+    queue<int> q;
+    for(int i = 0; i < n; i++)
+        if(!visited[i] && !dfs(i, visited, completed, graph, ans))
+            return vector<int> ();                
+    
+    return ans;
+}
+
+bool dfs(int i, vector<bool> &visited, vector<bool> &completed, vector<vector<int>> &graph, vector<int> &ans)
+{
+    if(visited[i])
+        return completed[i];
+        
+    visited[i] = true;
+    for(auto j : graph[i])
+        if(!dfs(j, visited, completed, graph, ans))
+            return completed[i] = false;
+    
+    ans.push_back(i);
+    return completed[i] = true;
+}
+};
