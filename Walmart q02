@@ -1,0 +1,30 @@
+question link:- https://leetcode.com/problems/stone-game/
+
+
+code:- 
+      class Solution {
+public:
+    int t[501][501];
+    int alturn(vector<int>& p,int i,int j){
+        if(i>j){
+            return 0;
+        }
+        if(t[i][j]!=-1){
+            return t[i][j];
+        }
+        int si = p[i]+min(alturn(p,i+2,j),alturn(p,i+1,j-1));
+        int sj = p[j]+min(alturn(p,i,j-2),alturn(p,i+1,j-1));
+        return t[i][j]=max(si,sj);
+    }
+    bool stoneGame(vector<int>& p) {
+        int s=0;
+        for(int i=0;i<p.size();i++){
+            s+=p[i];
+        }
+        int n=p.size();
+        memset(t,-1,sizeof(t));
+        int al=alturn(p,0,n-1);
+        return (al>s-al);
+         
+    }
+};
