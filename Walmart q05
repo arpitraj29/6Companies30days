@@ -1,0 +1,23 @@
+question link:- https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1/#
+
+
+code:-
+    class Solution {
+  public:
+  
+    int So(Node* node){
+        if(!node){
+            return 0;
+        }
+        int a=So(node->left);
+        int b=So(node->right);
+        int f=node->data;
+        node->data=a+b;
+        return a+b+f;
+    }
+    void toSumTree(Node *node)
+    {
+        So(node);
+        
+    }
+};
