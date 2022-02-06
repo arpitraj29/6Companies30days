@@ -1,0 +1,26 @@
+question link:- https://practice.geeksforgeeks.org/problems/number-of-unique-paths5339/1/#
+
+code:-
+    class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    void start(int &ans,int i,int j,int a,int b){
+        if(i==a && j==b){
+            ans+=1;
+            return ;
+        }
+        if(i<0||i>a||j<0||j>b){
+            return ;
+        }
+        start(ans,i+1,j,a,b);
+        start(ans,i,j+1,a,b);
+        return ;
+    }
+    int NumberOfPath(int a, int b)
+    {
+        int ans=0;
+        start(ans,0,0,a-1,b-1);
+        return ans;
+    }
+};
