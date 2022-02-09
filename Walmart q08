@@ -1,0 +1,12 @@
+question link:- https://practice.geeksforgeeks.org/problems/maximum-height-tree4803/1/?page=2&company[]=Walmart&query=page2company[]Walmart#
+
+
+code:-
+    class Solution{
+public:
+    
+    int height(int N){
+        // roots of quadratic equation: N^2 + N - 2X <= 0
+        return (-1 + sqrt(1+8*N))/2;
+    }
+};
