@@ -1,0 +1,40 @@
+question link:- https://leetcode.com/problems/find-array-given-subset-sums/
+
+
+
+code:-
+    class Solution {
+public:
+    vector<int> recoverArray(int n, vector<int>& sums) {
+        sort(sums.begin(),sums.end());
+        vector<int>v;
+        for(int i=0;i<n;i++){
+            unordered_map<int,int>mp;
+            int d=sums[1]-sums[0];
+            int flag=0;
+            vector<int>v1,v2;
+            for(int j=0;j<sums.size();j++){
+                if(!mp[sums[j]]){
+                    v1.push_back(sums[j]);
+                    mp[sums[j]+d]++;
+                    if(sums[j]==0){
+                        flag=1;
+                    }
+                }
+                else{
+                    v2.push_back(sums[j]);
+                    mp[sums[j]]--;
+                }
+            }
+            if(flag==1){
+                v.push_back(d);
+                sums=v1;
+            }
+            else{
+                v.push_back(-d);
+                sums=v2;
+            }
+        }
+        return v;
+    }
+};
